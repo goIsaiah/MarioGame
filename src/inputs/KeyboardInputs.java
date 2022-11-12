@@ -16,6 +16,11 @@ public class KeyboardInputs implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-
+        // System.out.println("A key is pressed.");
+        switch(e.getKeyCode()) {
+            case KeyEvent.VK_W:
+                System.out.println("It's W");
+                break;
+        }
     }
 }
