@@ -11,15 +11,14 @@ public class GamePanel extends JPanel {
 
     private MouseInputs mouseInputs;
     private Color color = new Color(150, 20, 90);
-    private float xDelta = 100;
-    private float yDelta = 100;
-    private float xDir = 0.004f;
-    private float yDir = 0.004f;
+    private float xDelta = 100, yDelta = 100;
+    private float xDir = 0.03f, yDir = 0.03f;
     private int frames = 0;
     private long lastCheck = 0;
     private Random random;
 
     public GamePanel() {
+        random = new Random();
         mouseInputs = new MouseInputs(this);
         addKeyListener(new inputs.KeyboardInputs(this));
         addMouseListener(mouseInputs);
@@ -48,7 +47,7 @@ public class GamePanel extends JPanel {
         frames++;
         if (System.currentTimeMillis() - lastCheck >= 1000) {
             lastCheck = System.currentTimeMillis();
-            System.out.println("FPS: " + lastCheck);
+            System.out.println("FPS: " + frames);
             frames = 0;
         }
 
@@ -65,6 +64,7 @@ public class GamePanel extends JPanel {
         yDelta += yDir;
         if (yDelta > 400 || xDelta < 0) {
             yDir *= -1;
+            color = getRandomColor();
         }
     }
 
